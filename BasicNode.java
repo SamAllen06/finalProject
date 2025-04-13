@@ -1,4 +1,5 @@
 class BasicNode{
+	String nodeName;
 	int intData;
 	String stringData;
 	Date dateData;
@@ -7,6 +8,7 @@ class BasicNode{
 	Node previousNode;
 
 	Node(){
+		this.nodeName = "";
 		this.intData = 0;
 		this.stringData = "";
 		this.dateData = null;
@@ -15,9 +17,33 @@ class BasicNode{
 		this.previousNode = null;
 	}//end constructor
 
-	public void abstract setNode(String previousNode){
+	public void setNode(String nodeName, String nextNode, String previousNode){
+		this.nodeName.setName(nodeName);
+		for (Node node: nodes){
+			if (previousNode.equalsIgnoreCase(node.getName())){
+				this.previousNode = previousNode;
+			} else{
+				System.out.println("Could not find a node with given previousNode name. Did not set previousNode");
+			} if (nextNode.equalsIgnoreCase(node.getName())){
+				this.nextNode = nextNode;
+			} else{
+				System.out.println("Could not find a node with given nextNode name. Did not set nextNode. ");
+			}//end if
+		}//end for loop
+	}//end setter def
 
-	}	
+	public String getNode(){
+		String tempNodeInfo = "Node Name: " + this.getName + "\nNext Node: " + this.nextNode.getName + "\nPrevious Node: " + this.previousNode.getName;
+		return tempNodeInfo;
+	}//end getter def
+	
+	public void setName(String nodeName){
+		this.nodeName = nodename;
+	}//end setter def
+
+	public String getName(){
+		return this.nodeName;
+	}//end getter def
 
 	public void setNodeData(String dataType, String data){
 		if (dataType.equalsIgnoreCase("int")){
