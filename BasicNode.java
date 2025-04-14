@@ -22,21 +22,31 @@ class BasicNode{
 		nodeList.addBasicNode(this);
 	}//end constructor
 
-	public void setNode(String nodeName, BasicNode nextNode, BasicNode previousNode){
+	public void setNodeName(String nodeName){
 		this.setName(nodeName);
-		this.nextNode = nextNode;
-		this.previousNode = previousNode;
 	}//end setter def
 
-	public String getNode(){
+	public String getNodeInfo(){
 		String tempNodeInfo = "Node Name: " + this.getName() + "\nNext Node: " + this.nextNode.getName() + "\nPrevious Node: " + this.previousNode.getName();
 		return tempNodeInfo;
 	}//end getter def
+
+	public void setNext(BasicNode node){
+		this.nextNode = node;
+	}//end setter
 
 	public BasicNode getNext(){
 		return this.nextNode();
 	}//end getter def
 	
+	public void setPrevious(BasicNode node){
+		this.previousNode = node;
+	}//end setter
+
+	public BasicNode getPrevious(){
+		return this.previousNode;
+	}//end setter def
+
 	public void setName(String nodeName){
 		this.nodeName = nodeName;
 	}//end setter def
