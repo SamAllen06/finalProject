@@ -2,7 +2,7 @@ import java.util.*;
 
 public class ResultingInt{
 	String operationType;
-	ArrayList<Node> dependencies = new ArrayList();
+	ArrayList<BasicNode> dependencies = new ArrayList();
 	int resultingInt;
 
 	ResultingInt(){
@@ -18,14 +18,13 @@ public class ResultingInt{
 		return this.operationType;
 	}//end getter def
 
-	public void setDependencies(String stringDependencies){
-		this.dependencies.clear();
-		String[] nodeNames = stringDependencies.split(", ");
+	public void setDependencies(ArrayList<BasicNode> dependencies){
+		this.dependencies = dependencies;
 	}//end setter def
 
 	public String getDependencies(){
 		String tempString = "";
-		for (Node dependency: dependencies){
+		for (BasicNode dependency: dependencies){
 			tempString = tempString + dependency + ", ";
 		}//end for loop
 		return tempString;
@@ -36,13 +35,13 @@ public class ResultingInt{
 		int tempSum = 0;
 		int tempInt = 0;
 		if (this.operationType.equalsIgnoreCase("multiplication")){
-			for (Node dependency: dependencies){
+			for (BasicNode dependency: dependencies){
 				tempInt = Integer.parseInt(dependency.getNodeData("int"));
 				tempProduct = tempProduct * tempInt;
 			}//end for loop
 			this.resultingInt = tempProduct;
 		} else if (this.operationType.equalsIgnoreCase("addition")){
-			for (Node dependency: dependencies){
+			for (BasicNode dependency: dependencies){
 				tempInt = Integer.parseInt(dependency.getNodeData("int"));
 				tempSum = tempSum + tempInt;
 			}//end for looop

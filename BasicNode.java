@@ -1,13 +1,16 @@
+import java.util.*;
+
 class BasicNode{
 	String nodeName;
 	int intData;
 	String stringData;
 	Date dateData;
 	ResultingInt resultData;
-	Node nextNode;
-	Node previousNode;
+	BasicNode nextNode;
+	BasicNode previousNode;
+	NodeList allBasicNodes;
 
-	Node(){
+	BasicNode(NodeList nodeList){
 		this.nodeName = "";
 		this.intData = 0;
 		this.stringData = "";
@@ -15,30 +18,27 @@ class BasicNode{
 		this.resultData = null;
 		this.nextNode = null;
 		this.previousNode = null;
+		this.allBasicNodes = nodeList;
+		nodeList.addBasicNode(this);
 	}//end constructor
 
-	public void setNode(String nodeName, String nextNode, String previousNode){
-		this.nodeName.setName(nodeName);
-		for (Node node: nodes){
-			if (previousNode.equalsIgnoreCase(node.getName())){
-				this.previousNode = previousNode;
-			} else{
-				System.out.println("Could not find a node with given previousNode name. Did not set previousNode");
-			} if (nextNode.equalsIgnoreCase(node.getName())){
-				this.nextNode = nextNode;
-			} else{
-				System.out.println("Could not find a node with given nextNode name. Did not set nextNode. ");
-			}//end if
-		}//end for loop
+	public void setNode(String nodeName, BasicNode nextNode, BasicNode previousNode){
+		this.setName(nodeName);
+		this.nextNode = nextNode;
+		this.previousNode = previousNode;
 	}//end setter def
 
 	public String getNode(){
-		String tempNodeInfo = "Node Name: " + this.getName + "\nNext Node: " + this.nextNode.getName + "\nPrevious Node: " + this.previousNode.getName;
+		String tempNodeInfo = "Node Name: " + this.getName() + "\nNext Node: " + this.nextNode.getName() + "\nPrevious Node: " + this.previousNode.getName();
 		return tempNodeInfo;
+	}//end getter def
+
+	public BasicNode getNext(){
+		return this.nextNode();
 	}//end getter def
 	
 	public void setName(String nodeName){
-		this.nodeName = nodename;
+		this.nodeName = nodeName;
 	}//end setter def
 
 	public String getName(){
@@ -46,6 +46,7 @@ class BasicNode{
 	}//end getter def
 
 	public void setNodeData(String dataType, String data){
+		ArrayList<BasicNode> dependenciesList = new ArrayList();
 		if (dataType.equalsIgnoreCase("int")){
 			this.intData = Integer.parseInt(data);
 		} else if (dataType.equalsIgnoreCase("String")){
@@ -53,7 +54,15 @@ class BasicNode{
 		} else if (dataType.equalsIgnoreCase("Date")){
 			dateData.setDate(data);
 		} else if (dataType.equalsIgnoreCase("ResultingInt")){
-			resultData.setDependencies(data);
+			String[] dependencies = data.split(", ");
+			for (String dependency: dependencies){
+				for (BasicNode node: allBasicNodes.getBasicNodeList()){
+					if (dependency.equalsIgnoreCase(node.getName())){
+						dependenciesList.add(node);
+					}//end if
+				}//end for loop
+			}//end for loop
+			resultData.setDependencies(dependenciesList);
 			resultData.setResultingInt();
 		} else {
 			System.out.println("Wrong dataType passed to setNodeData");
