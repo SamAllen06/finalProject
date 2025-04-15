@@ -71,21 +71,59 @@ public class LinkedList{
 		return length;
 	}//end getBasicNodeListLength def
 
-	public void insertBasicNode(String place, BasicNode node){
-		String[] stringPosition = place.split("x");
-		ArrayList<int> position = new ArrayList();
-		for (String string: stringPosition){
-			int tempInt = Integer.parseInt(string);
-			position.add(tempInt);
-		}//end for loop
-		 for (i = 0, i < position[1], i += 1){
+	public void insertBasicNode(int position, BasicNode node){
+		if (position == 1){
+			BasicNode tempNode = this.basicHead;
+			this.setBasicHead(node);
+			node.setNext(tempNode);
+			tempNode.setPrevious(node);
+		} else{
+			BasicNode tempNode = basicHeader;
+			for (i = 1, i < position, i +=1){
+				if (i+1 == position){
+					node.setPrevious(tempNode)
+					tempNode = tempNode.getNext();
+					node.setNext(tempNode)
 
-	}//end insertBasicNode
+					node.getPrevious.setNext(node);
+					node.getNext.setPrevious(node);
+				} else{
+					tempNode = tempNode.getNext();
+				}//end if
+			}//end for loop
+		}//end if
+	}//end insertBasicNode def
 
-	public void insertBasicNode(int place, BasicNode node){
-		BasicNode tempNode = basicHeader.getNext();
-		for (i = 0, i < position, i +=1){
+	public void addBasicNode(BasicNode node){
+		BasicNode tempNode = basicHeader;
+		while (tempNode.getNext() != null){
 			tempNode = tempNode.getNext();
-		}//end for loop
+		}//end whil loop
+		tempNode.setNext(node);
+		node.setPrevious(tempNode);
+	}//end addBasicNode def
 
-	}//end class def
+	public String getLinkedListString(){
+		BasicNode tempNode = basicHeader;
+		String linkedListString = "";
+		linkedListString = linkedListString + tempNode.getName() + ": " tempNode.getData() +"\n";
+		while (tempNode.getNext() != null){
+			tempNode = tempNode.getNext();
+			linkedListString = linkedListString + tempNode.getName() + ": " tempNode.getData() +"\n";
+		}//end while loop
+		return linkedListString;
+	}//end getArrayListString
+
+	public String getBasicNodeData(int position){
+		BasicNode tempNode = basicHeader;
+		String nodeData = "";
+		for (i = 1, i <= position, i += 1){
+			if (i == position){
+				 nodeData = tempNode.getDataType() + ": " + tempNode.getData() + "\n";
+			} else {
+				tempNode = tempNode.getNext();
+			}//end if
+		}//end for loop
+		return nodeData;
+	}//end getBasicNodeData
+}//end class def

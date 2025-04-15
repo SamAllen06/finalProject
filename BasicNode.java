@@ -2,6 +2,7 @@ import java.util.*;
 
 class BasicNode{
 	String nodeName;
+	String dataType;
 	int intData;
 	String stringData;
 	Date dateData;
@@ -12,6 +13,7 @@ class BasicNode{
 
 	BasicNode(NodeList nodeList){
 		this.nodeName = "";
+		this.dataType = "";
 		this.intData = 0;
 		this.stringData = "";
 		this.dateData = null;
@@ -30,6 +32,14 @@ class BasicNode{
 		String tempNodeInfo = "Node Name: " + this.getName() + "\nNext Node: " + this.nextNode.getName() + "\nPrevious Node: " + this.previousNode.getName();
 		return tempNodeInfo;
 	}//end getter def
+
+	public void setDataType(String dataType){
+		this.dataType = dataType;
+	}//end setter
+	
+	public String getDataType(){
+		return this.dataType;
+	}//end getter
 
 	public void setNext(BasicNode node){
 		this.nextNode = node;
@@ -55,15 +65,15 @@ class BasicNode{
 		return this.nodeName;
 	}//end getter def
 
-	public void setNodeData(String dataType, String data){
+	public void setNodeData(String data){
 		ArrayList<BasicNode> dependenciesList = new ArrayList();
-		if (dataType.equalsIgnoreCase("int")){
+		if (this.dataType.equalsIgnoreCase("int")){
 			this.intData = Integer.parseInt(data);
-		} else if (dataType.equalsIgnoreCase("String")){
+		} else if (this.dataType.equalsIgnoreCase("String")){
 			this.stringData = data;
-		} else if (dataType.equalsIgnoreCase("Date")){
+		} else if (this.dataType.equalsIgnoreCase("Date")){
 			dateData.setDate(data);
-		} else if (dataType.equalsIgnoreCase("ResultingInt")){
+		} else if (this.dataType.equalsIgnoreCase("ResultingInt")){
 			String[] dependencies = data.split(", ");
 			for (String dependency: dependencies){
 				for (BasicNode node: allBasicNodes.getBasicNodeList()){
@@ -75,21 +85,21 @@ class BasicNode{
 			resultData.setDependencies(dependenciesList);
 			resultData.setResultingInt();
 		} else {
-			System.out.println("Wrong dataType passed to setNodeData");
+			System.out.println("Error");
 		}//end if def
 	}//end setter def
 
-	public String getNodeData(String dataType){
-		if (dataType.equalsIgnoreCase("int")){
+	public String getNodeData(){
+		if (this.dataType.equalsIgnoreCase("int")){
 			return String.valueOf(this.intData);
-		} else if (dataType.equalsIgnoreCase("String")){
+		} else if (this.dataType.equalsIgnoreCase("String")){
 			return this.stringData;
-		} else if (dataType.equalsIgnoreCase("Date")){
+		} else if (this.dataType.equalsIgnoreCase("Date")){
 			return this.dateData.getDate();
-		} else if (dataType.equalsIgnoreCase("ResultingInt")){
+		} else if (this.dataType.equalsIgnoreCase("ResultingInt")){
 			return String.valueOf(this.resultData.getResultingInt());
 		} else{
-			String error = "Incorrect dataType passed to getNodeData";
+			String error = "Error";
 			return error;
 		}//end if
 	}//end getter def	
