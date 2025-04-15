@@ -24,9 +24,13 @@ class BasicNode{
 		nodeList.addBasicNode(this);
 	}//end constructor
 
-	public void setNodeName(String nodeName){
-		this.setName(nodeName);
+	public void setName(String nodeName){
+		this.nodeName = nodeName;
 	}//end setter def
+
+	public String getName(){
+		return this.nodeName;
+	}//end getter
 
 	public String getNodeInfo(){
 		String tempNodeInfo = "Node Name: " + this.getName() + "\nNext Node: " + this.nextNode.getName() + "\nPrevious Node: " + this.previousNode.getName();
@@ -56,14 +60,6 @@ class BasicNode{
 	public BasicNode getPrevious(){
 		return this.previousNode;
 	}//end setter def
-
-	public void setName(String nodeName){
-		this.nodeName = nodeName;
-	}//end setter def
-
-	public String getName(){
-		return this.nodeName;
-	}//end getter def
 
 	public void setNodeData(String data){
 		ArrayList<BasicNode> dependenciesList = new ArrayList();
