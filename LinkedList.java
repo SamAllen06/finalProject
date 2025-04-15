@@ -1,20 +1,22 @@
 public class LinkedList{
-	HeaderNode headerHead;
+//	HeaderNode headerHead;
 	BasicNode basicHead;
+	NodeList allBasicNodes;
 
-	public void LinkedList(){
-		this.headerHead = null;
+	public void LinkedList(NodeList nodeList){
+//		this.headerHead = null;
 		this.basicHead = null;
+		this.allBasicNodes = nodeList;
 	}//end constructor
 
-	public void setHeaderHead(HeaderNode node){
+/*	public void setHeaderHead(HeaderNode node){
 		this.headerHead = node;
 	}//end setHeaderHead def
 
 	public HeaderNode getHeaderHead(){
 		return this.headerHead;
 	}//end getter
-
+*/
 	public void setBasicHead(BasicNode node){
 		this.basicHead = node;
 	}//end setBasicHead def
@@ -24,22 +26,22 @@ public class LinkedList{
 	}//end getBasicHead def
 
 	public void createBasicList(){
-		this.basicHead = new BasicNode;
+		this.basicHead = new BasicNode(this.allBasicNodes);
 	}//end createBasicList def
 
-	public void createHeaderList(){
-		this.headerHead = new HeaderNode;
+/*	public void createHeaderList(){
+		this.headerHead = new HeaderNode();
 	}//end createHeaderList def
-
+*/
 	public void deleteBasicList(BasicNode node){
 		while (node.getNext() != null){
 			deleteBasicList(node.getNext());
-			node.getNext.deleteBasicNode();
+			this.deleteBasicNode(node.getNext());
 		}//end while loop
-		node.deleteBasicNode();
+		this.deleteBasicNode(node);
 	}//end deleteBasicList def
 			
-	public void deleteHeaderList(HeaderNode node){
+/*	public void deleteHeaderList(HeaderNode node){
 		while (node.getNext() != null){
 			deleteHeaderList(node.getNext());
 			deleteBasicList(node.results.getHead());
@@ -48,23 +50,23 @@ public class LinkedList{
 		}//end while loop
 		node.deleteHeaderNode();
 	}//end deleteHeaderList def
-
+*/
 	public void deleteBasicNode(BasicNode node){
-		node.getPrevious.setNext(node.getNext());
-		node.getNext.setPrevious(node.getPrevious());
+		node.getPrevious().setNext(node.getNext());
+		node.getNext().setPrevious(node.getPrevious());
 		node.allBasicNodes.removeBasicNode(node);
 	}//end deleteBasicNode def
 
-	public void deleteHeaderNode(HeaderNode node){
+/*	public void deleteHeaderNode(HeaderNode node){
 		node.getPrevious.setNext(node.getNext());
 		node.getNext.setPrevious(node.getPrevious());
 		node.deleteBasicList(node.getBasicHeader());
 		node.allHeaderNodes.removeHeaderNode(node);
 	}//end deleteHeaderNode def
-
+*/
 	public int getBasicNodeListLength(BasicNode node){
 		int length = 0;
-		while (node.next != null){
+		while (node.getNext() != null){
 			getBasicNodeListLength(node.getNext());
 			length += 1;
 		}//end while loop
@@ -78,15 +80,16 @@ public class LinkedList{
 			node.setNext(tempNode);
 			tempNode.setPrevious(node);
 		} else{
-			BasicNode tempNode = basicHeader;
-			for (i = 1, i < position, i +=1){
+			int i;
+			BasicNode tempNode = this.basicHead;
+			for (i = 1; i < position; i +=1){
 				if (i+1 == position){
-					node.setPrevious(tempNode)
+					node.setPrevious(tempNode);
 					tempNode = tempNode.getNext();
-					node.setNext(tempNode)
+					node.setNext(tempNode);
 
-					node.getPrevious.setNext(node);
-					node.getNext.setPrevious(node);
+					node.getPrevious().setNext(node);
+					node.getNext().setPrevious(node);
 				} else{
 					tempNode = tempNode.getNext();
 				}//end if
@@ -95,7 +98,7 @@ public class LinkedList{
 	}//end insertBasicNode def
 
 	public void addBasicNode(BasicNode node){
-		BasicNode tempNode = basicHeader;
+		BasicNode tempNode = this.basicHead;
 		while (tempNode.getNext() != null){
 			tempNode = tempNode.getNext();
 		}//end whil loop
@@ -104,22 +107,23 @@ public class LinkedList{
 	}//end addBasicNode def
 
 	public String getLinkedListString(){
-		BasicNode tempNode = basicHeader;
+		BasicNode tempNode = this.basicHead;
 		String linkedListString = "";
-		linkedListString = linkedListString + tempNode.getName() + ": " tempNode.getData() +"\n";
+		linkedListString = linkedListString + tempNode.getName() + ": " + tempNode.getNodeData() +"\n";
 		while (tempNode.getNext() != null){
 			tempNode = tempNode.getNext();
-			linkedListString = linkedListString + tempNode.getName() + ": " tempNode.getData() +"\n";
+			linkedListString = linkedListString + tempNode.getName() + ": " + tempNode.getNodeData() +"\n";
 		}//end while loop
 		return linkedListString;
 	}//end getArrayListString
 
 	public String getBasicNodeData(int position){
-		BasicNode tempNode = basicHeader;
+		BasicNode tempNode = this.basicHead;
 		String nodeData = "";
-		for (i = 1, i <= position, i += 1){
+		int i;
+		for (i = 1; i <= position; i += 1){
 			if (i == position){
-				 nodeData = tempNode.getDataType() + ": " + tempNode.getData() + "\n";
+				 nodeData = tempNode.getDataType() + ": " + tempNode.getNodeData() + "\n";
 			} else {
 				tempNode = tempNode.getNext();
 			}//end if

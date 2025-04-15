@@ -46,7 +46,7 @@ class BasicNode{
 	}//end setter
 
 	public BasicNode getNext(){
-		return this.nextNode();
+		return this.nextNode;
 	}//end getter def
 	
 	public void setPrevious(BasicNode node){

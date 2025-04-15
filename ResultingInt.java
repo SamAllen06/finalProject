@@ -36,13 +36,13 @@ public class ResultingInt{
 		int tempInt = 0;
 		if (this.operationType.equalsIgnoreCase("multiplication")){
 			for (BasicNode dependency: dependencies){
-				tempInt = Integer.parseInt(dependency.getNodeData("int"));
+				tempInt = Integer.parseInt(dependency.getNodeData());
 				tempProduct = tempProduct * tempInt;
 			}//end for loop
 			this.resultingInt = tempProduct;
 		} else if (this.operationType.equalsIgnoreCase("addition")){
 			for (BasicNode dependency: dependencies){
-				tempInt = Integer.parseInt(dependency.getNodeData("int"));
+				tempInt = Integer.parseInt(dependency.getNodeData());
 				tempSum = tempSum + tempInt;
 			}//end for looop
 			this.resultingInt = tempSum;
