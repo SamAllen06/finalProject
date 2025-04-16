@@ -1,9 +1,9 @@
-public class LinkedList{
+public class BasicLinkedList{
 //	HeaderNode headerHead;
 	BasicNode basicHead;
 	NodeList allBasicNodes;
 
-	public void LinkedList(NodeList nodeList){
+	public void BasicLinkedList(BasicNodeList nodeList){
 //		this.headerHead = null;
 		this.basicHead = null;
 		this.allBasicNodes = nodeList;
