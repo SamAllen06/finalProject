@@ -100,7 +100,8 @@ class Budgeter{
 					node.data.addBasicNode(newNode);
 				}//end for loop
 			} else if (response.equals("3")){
-				int i;
+				int rowNum = 0;
+				int columnNum = 0;
 				Scanner input = new Scanner(System.in);
 				System.out.println("What row would you like to edit?");
 				String rowNumberString = input.nextLine();
@@ -110,9 +111,47 @@ class Budgeter{
 					System.out.println("Invalid input");
 				}//end try
 				if (rowNumber <= this.headerList.getHeaderHead().getResults().getBasicNodeListLength()){
-					for (HeaderNode node: this.headerList){
-						BasicNode tempNode = new BasicNode(this.basicNodeList);
-						for (i=0; i<rowNumber; i++){
+					
+				} else if (rowNumber <= this.headerList.getHeaderHead().getResults().getBasicNodeListLength() + this.headerList.getHeaderHead().getData().getBasicNodeListLength()){
+					for (HeaderNode headerNode: this.headerList){
+						columnNum += 1;
+						for (BasicNode basicNode: headerNode){	
+							rowNum += 1;
+							if (rowNum == rowNumber){
+								System.out.print("Do you want row " + String.valueOf(rowNumber + 1) + ", column " + String.valueOf(columnNum) + " to be (1) an integer, (2) a string, (3) a date, or (4) an integer dependent on other data? )"
+								String dataType = input.nextLine();
+								if (dataType.equals("1")){
+									basicNode.setDataType("int");
+								} else if (dataType.equals("2")){
+									basicNode.setDataType("String");
+								} else if (dataType.equals("3")){
+									basicNode.setDataType("Date");
+								} else if (dataType.equals("4")){
+									basicNode.setDataType("ResultingInt");
+								} else {
+									System.out.println("Invalid input");
+								}// end if
+								System.out.print("What is the data that you want " +String.valueOf(rowNumber + 1) + ", column " +String.valueOf(columnNum) + " to be ? (In the case of option 4, put in the row and column numbers of all the cells that you want this cell to use in its calculations in this format: '0x0, 0x1, 0x2, etc'" );
+								String data = input.nextLine();
+								try {
+									basicNode.setNodeData(data);
+								} catch (Exception e) {
+									System.out.println("Error: " + e.getMessage());
+								}//end try
+							}//end if
+						}//end for loop
+					}//end for loop
+				}//end if
+			} else if {
+				response.equals("4"){
+					System.out.println("What line would you like to print? ");
+					Scanner input = new Scanner(System.in);
+					String lineNumString = input.nextLine();
+					try {
+						int lineNum = String.valueOf(lineNumString);
+					} catch (Exception e){
+						System.out.println("Invalid input");
+					}//end try
 
 			} else{
 				System.out.println("Invalid input");
