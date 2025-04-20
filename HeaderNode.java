@@ -5,9 +5,9 @@ class HeaderNode{
 	HeaderNode previousHeader;
 	BasicLinkedList results;
 	BasicLinkedList data;
-	NodeList allHeaderNodes;
+	HeaderNodeList allHeaderNodes;
 
-	HeaderNode(NodeList nodeList){
+	HeaderNode(HeaderNodeList nodeList){
 		this.nodeName = "";
 		this.nodeData = "";
 		this.nextHeader = null;
@@ -16,7 +16,7 @@ class HeaderNode{
 		this.data.createBasicList();
 		this.nodeName = "";
 		this.allHeaderNodes = nodeList;
-		nodeList.addHeaderNode(this);
+		nodeList.addNode(this);
 	}//end constructor
 
 	public void setName(String nodeName){
@@ -55,4 +55,20 @@ class HeaderNode{
 	public String getNodeData(){
 		return this.nodeData;
 	}//end getter def
+
+	public BasicLinkedList getData(){
+		return this.data;
+	}//end getter def
+
+	public BasicLinkedList getResults(){
+		return this.results;
+	}//end getter
+
+	public void deleteNode(){
+		this.getPrevious().setNext(null);
+		this.getNext().setPrevious(null);
+		this.nextHeader = null;
+		this.previousHeader = null;
+		this.allHeaderNodes.removeNode(this);
+	}//end deleteNode def
 }//end Node class def

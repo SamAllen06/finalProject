@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class BasicNodeList{
 	ArrayList<BasicNode> basicNodes;
 
@@ -12,7 +14,7 @@ public class BasicNodeList{
 	public String getNodeString(){
 		String tempString = "";
 		for (BasicNode node: this.basicNodes){
-			tempString - tempString + node.getName() + ", ";
+			tempString = tempString + node.getName() + ", ";
 		}//end for loop
 		return tempString;
 	}//end getter

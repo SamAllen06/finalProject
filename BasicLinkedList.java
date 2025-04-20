@@ -1,7 +1,7 @@
 public class BasicLinkedList{
 //	HeaderNode headerHead;
 	BasicNode basicHead;
-	NodeList allBasicNodes;
+	BasicNodeList allBasicNodes;
 
 	public void BasicLinkedList(BasicNodeList nodeList){
 //		this.headerHead = null;
@@ -34,13 +34,14 @@ public class BasicLinkedList{
 	}//end createHeaderList def
 */
 	public void deleteBasicList(BasicNode node){
-		while (node.getNext() != null){
-			deleteBasicList(node.getNext());
-			this.deleteBasicNode(node.getNext());
-		}//end while loop
-		this.deleteBasicNode(node);
-	}//end deleteBasicList def
-			
+                while (node != null){
+                        BasicNode tempNode = node.getNext();
+
+                        node.deleteNode();
+                        node = tempNode;
+                }//end while loop
+        }//end deleteBasicList def
+
 /*	public void deleteHeaderList(HeaderNode node){
 		while (node.getNext() != null){
 			deleteHeaderList(node.getNext());
@@ -54,7 +55,7 @@ public class BasicLinkedList{
 	public void deleteBasicNode(BasicNode node){
 		node.getPrevious().setNext(node.getNext());
 		node.getNext().setPrevious(node.getPrevious());
-		node.allBasicNodes.removeBasicNode(node);
+		node.allBasicNodes.removeNode(node);
 	}//end deleteBasicNode def
 
 /*	public void deleteHeaderNode(HeaderNode node){

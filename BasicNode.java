@@ -9,9 +9,9 @@ class BasicNode{
 	ResultingInt resultData;
 	BasicNode nextNode;
 	BasicNode previousNode;
-	NodeList allBasicNodes;
+	BasicNodeList allBasicNodes;
 
-	BasicNode(NodeList nodeList){
+	BasicNode(BasicNodeList nodeList){
 		this.nodeName = "";
 		this.dataType = "";
 		this.intData = 0;
@@ -21,7 +21,7 @@ class BasicNode{
 		this.nextNode = null;
 		this.previousNode = null;
 		this.allBasicNodes = nodeList;
-		nodeList.addBasicNode(this);
+		nodeList.addNode(this);
 	}//end constructor
 
 	public void setName(String nodeName){
@@ -72,7 +72,7 @@ class BasicNode{
 		} else if (this.dataType.equalsIgnoreCase("ResultingInt")){
 			String[] dependencies = data.split(", ");
 			for (String dependency: dependencies){
-				for (BasicNode node: allBasicNodes.getBasicNodeList()){
+				for (BasicNode node: allBasicNodes.getNodeList()){
 					if (dependency.equalsIgnoreCase(node.getName())){
 						dependenciesList.add(node);
 					}//end if
@@ -98,5 +98,13 @@ class BasicNode{
 			String error = "Error";
 			return error;
 		}//end if
-	}//end getter def	
+	}//end getter def
+
+	public void deleteNode(){
+                this.getPrevious().setNext(null);
+                this.getNext().setPrevious(null);
+                this.nextNode = null;
+                this.previousNode = null;
+                this.allBasicNodes.removeNode(this);
+        }//end deleteNode def
 }//end Node class def

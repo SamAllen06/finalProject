@@ -1,6 +1,6 @@
 public class HeaderLinkedList{
 	HeaderNode headerHead;
-	NodeList allHeaderNodes;
+	HeaderNodeList allHeaderNodes;
 
 	public void HeaderLinkedList(HeaderNodeList nodeList){
 		this.headerHead = null;
@@ -16,15 +16,27 @@ public class HeaderLinkedList{
 	}//end getter
 
 	public void createHeaderList(){
-		this.headerHead = new HeaderNode();
+		this.headerHead = new HeaderNode(this.allHeaderNodes);
 	}//end creator def
 
 	public void deleteHeaderList(HeaderNode node){
-                while (node.getNext() != null){
-                        deleteBasicList(node.results.getHead());
-                        deleteBasicList(node.data.getHead());
-                        deleteHeaderList(node.getNext());
-                        node.getNext.deleteHeaderNode();
+                while (node != null){
+                        deleteBasicList(node.getResults().getBasicHead());
+                        deleteBasicList(node.getData().getBasicHead());
+			
+			HeaderNode tempNode = node.getNext();
+			
+			node.deleteNode();
+			node = tempNode;
                 }//end while loop
-                node.deleteHeaderNode();
         }//end deleteHeaderList def
+	
+	public void deleteBasicList(BasicNode node){
+		while (node != null){
+			BasicNode tempNode = node.getNext();
+
+			node.deleteNode();
+			node = tempNode;
+		}//end while loop
+	}//end deleteBasicList def
+}//end class def

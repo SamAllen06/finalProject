@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class HeaderNodeList{
 	ArrayList<HeaderNode> headerNodes;
 
@@ -18,7 +20,7 @@ public class HeaderNodeList{
 	}//end getter
 
 	public ArrayList<HeaderNode> getNodeList(){
-		return this.headerNode;
+		return this.headerNodes;
 	}//end getter
 	
 	public void addNode(HeaderNode node){
