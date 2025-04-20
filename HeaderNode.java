@@ -3,8 +3,8 @@ class HeaderNode{
 	String nodeData;
 	HeaderNode nextHeader;
 	HeaderNode previousHeader;
-	LinkedList results;
-	LinkedList data;
+	BasicLinkedList results;
+	BasicLinkedList data;
 	NodeList allHeaderNodes;
 
 	HeaderNode(NodeList nodeList){
