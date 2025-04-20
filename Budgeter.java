@@ -26,19 +26,19 @@ class Budgeter{
 		boolean keepGoing = true;
 		
 		while (keepGoing){
-			if (response.equals("0"){
+			if (response.equals("0")){
 				keepGoing = false;
 				System.out.println("Exiting program");
-			} else if (response.equals("1"){
+			} else if (response.equals("1")){
 				String response2 = budgetingMenu();
 				recordStart(response2);
-			} else if (response.equals("2"){
+			} else if (response.equals("2")){
 				String response3 = budgetingMenu();
 				allocationStart(response3);
-			} else if (response.equals("3"){
+			} else if (response.equals("3")){
 				String response4 = savingMenu();
 				savingStart(response4);
-			} else if (response.equals("4"){
+			} else if (response.equals("4")){
 				String response5 = loadingMenu();
 				loadingStart(response5);
 			} else {
@@ -50,12 +50,20 @@ class Budgeter{
 	public String budgetingMenu(){
 		String response = "";
 		Scanner input = new Scanner(System.in);
-		System.out.print("0: Exit \n1: Add new row \n2: Edit past row \n3: Print a row \nEnter your choice: ");
+		System.out.print("0: Exit \n1: Insert a new row \n2: Append a new row \n3: Edit past row \n4: Print a row \nEnter your choice: ");
 		response = input.nextLine();
 		return response;
 	}//end budgetingMenu def
 
 	public void recordStart(String response){
+		boolean keepGoing = true;
+
+		while (keepGoing){
+			if (response.equals("0")){
+				keepGoing = false;
+				System.out.println("Exiting Record");
+			} else if (response.equals("1")){
+				
 
 	}//end recordStart def
 
