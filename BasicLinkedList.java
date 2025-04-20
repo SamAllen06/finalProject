@@ -1,22 +1,12 @@
 public class BasicLinkedList{
-//	HeaderNode headerHead;
 	BasicNode basicHead;
 	BasicNodeList allBasicNodes;
 
 	public void BasicLinkedList(BasicNodeList nodeList){
-//		this.headerHead = null;
 		this.basicHead = null;
 		this.allBasicNodes = nodeList;
 	}//end constructor
 
-/*	public void setHeaderHead(HeaderNode node){
-		this.headerHead = node;
-	}//end setHeaderHead def
-
-	public HeaderNode getHeaderHead(){
-		return this.headerHead;
-	}//end getter
-*/
 	public void setBasicHead(BasicNode node){
 		this.basicHead = node;
 	}//end setBasicHead def
@@ -29,10 +19,6 @@ public class BasicLinkedList{
 		this.basicHead = new BasicNode(this.allBasicNodes);
 	}//end createBasicList def
 
-/*	public void createHeaderList(){
-		this.headerHead = new HeaderNode();
-	}//end createHeaderList def
-*/
 	public void deleteBasicList(BasicNode node){
                 while (node != null){
                         BasicNode tempNode = node.getNext();
@@ -42,33 +28,17 @@ public class BasicLinkedList{
                 }//end while loop
         }//end deleteBasicList def
 
-/*	public void deleteHeaderList(HeaderNode node){
-		while (node.getNext() != null){
-			deleteHeaderList(node.getNext());
-			deleteBasicList(node.results.getHead());
-			deleteBasicList(node.data.getHead());
-			node.getNext.deleteHeaderNode();
-		}//end while loop
-		node.deleteHeaderNode();
-	}//end deleteHeaderList def
-*/
 	public void deleteBasicNode(BasicNode node){
 		node.getPrevious().setNext(node.getNext());
 		node.getNext().setPrevious(node.getPrevious());
 		node.allBasicNodes.removeNode(node);
 	}//end deleteBasicNode def
 
-/*	public void deleteHeaderNode(HeaderNode node){
-		node.getPrevious.setNext(node.getNext());
-		node.getNext.setPrevious(node.getPrevious());
-		node.deleteBasicList(node.getBasicHeader());
-		node.allHeaderNodes.removeHeaderNode(node);
-	}//end deleteHeaderNode def
-*/
-	public int getBasicNodeListLength(BasicNode node){
+	public int getBasicNodeListLength(){
 		int length = 0;
-		while (node.getNext() != null){
-			getBasicNodeListLength(node.getNext());
+		BasicNode tempNode = this.basicHead;
+		while (tempNode != null){
+			tempNode = tempNode.getNext();
 			length += 1;
 		}//end while loop
 		return length;
