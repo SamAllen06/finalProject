@@ -131,7 +131,7 @@ class Budgeter{
 								} else {
 									System.out.println("Invalid input");
 								}// end if
-								System.out.print("What is the data that you want " +String.valueOf(rowNumber + 1) + ", column " +String.valueOf(columnNum) + " to be ? (In the case of option 4, put in the row and column numbers of all the cells that you want this cell to use in its calculations in this format: '0x0, 0x1, 0x2, etc'" );
+								System.out.print("What is the data that you want " +String.valueOf(rowNumber + 1) + ", column " +String.valueOf(columnNum) + " to be ? (In the case of option 4, put in the row and column numbers of all the cells that you want this cell to use in its calculations in this format: 'row1, column1, row2, column2, etc'" );
 								String data = input.nextLine();
 								try {
 									basicNode.setNodeData(data);
@@ -142,18 +142,32 @@ class Budgeter{
 						}//end for loop
 					}//end for loop
 				}//end if
-			} else if {
-				response.equals("4"){
-					System.out.println("What line would you like to print? ");
-					Scanner input = new Scanner(System.in);
-					String lineNumString = input.nextLine();
-					try {
-						int lineNum = String.valueOf(lineNumString);
-					} catch (Exception e){
-						System.out.println("Invalid input");
-					}//end try
-
-			} else{
+			} else if (response.equals("4")){
+				System.out.println("What line would you like to print? ");
+				Scanner input = new Scanner(System.in);
+				String lineNumString = input.nextLine();
+				try {
+					int lineNum = String.valueOf(lineNumString);
+				} catch (Exception e){
+					System.out.println("Invalid input");
+				}//end try
+				for (HeaderNode headerNode: headerList){
+					System.out.println();
+					if (lineNum - 1 <= this.headerList.getHeaderHead().getResults().getBasicNodeListLength()){
+						for (BasicNode basicNode: headerNode.getResults(){
+							if (basicNode.getName() == lineNum){
+								System.out.println(basicNode.getNodeData);
+							}//end if
+						}//end for loop
+					} else if (lineNum - 1 <= this.headerList.getHeaderHead().getResults().getBasicNodeListLength() + this.headerList.getHeaderHead().getData().getBasicNodeListLength()){
+						for (BasicNode basicNode: headerNode.getData(){
+							if (basicNode.getName() == lineNum){
+								System.out.println(basicNode.getNodeData);
+							}//end if
+						}//end for loop
+					}//end if
+				}//end for loop
+			} else {
 				System.out.println("Invalid input");
 			}//end if 
 

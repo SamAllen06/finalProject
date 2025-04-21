@@ -7,6 +7,16 @@ public class BasicLinkedList{
 		this.allBasicNodes = nodeList;
 	}//end constructor
 
+	public void setNames(int startingName){
+		this.basicHead.setName(startingName);
+		BasicNode tempNode = this.basicHead;
+		int i;
+		for (i = startingName + 1; i <= getBasicNodeListLength(); i++){
+		       tempNode.getNext().setName(i);
+		       tempNode = tempNode.getNext();
+		}//end for loop
+ 	}//end setNames		
+	
 	public void setBasicHead(BasicNode node){
 		this.basicHead = node;
 	}//end setBasicHead def

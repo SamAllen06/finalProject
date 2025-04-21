@@ -1,5 +1,5 @@
 class HeaderNode{
-	String nodeName;
+	int nodeName;
 	String nodeData;
 	HeaderNode nextHeader;
 	HeaderNode previousHeader;
@@ -8,7 +8,7 @@ class HeaderNode{
 	HeaderNodeList allHeaderNodes;
 
 	HeaderNode(HeaderNodeList nodeList){
-		this.nodeName = "";
+		this.nodeName = 0;
 		this.nodeData = "";
 		this.nextHeader = null;
 		this.previousHeader = null;
@@ -19,16 +19,16 @@ class HeaderNode{
 		nodeList.addNode(this);
 	}//end constructor
 
-	public void setName(String nodeName){
+	public void setName(int nodeName){
 		this.nodeName = nodeName;
 	}//end setter def
 
-	public String getName(){
+	public int getName(){
 		return this.nodeName;
 	}//end getter
 
 	public String getNodeInfo(){
-		String tempNodeInfo = "Node Name: " + this.getName() + "\nNext Node: " + this.nextHeader.getName() + "\nPrevious Node: " + this.previousHeader.getName();
+		String tempNodeInfo = "Node Name: " + this.getName() + "\nNext Node: " + String.valueOf(this.nextHeader.getName()) + "\nPrevious Node: " + this.previousHeader.getName();
 		return tempNodeInfo;
 	}//end getter def
 

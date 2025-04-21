@@ -1,7 +1,7 @@
 import java.util.*;
 
 class BasicNode{
-	String nodeName;
+	int nodeName;
 	String dataType;
 	int intData;
 	String stringData;
@@ -10,9 +10,10 @@ class BasicNode{
 	BasicNode nextNode;
 	BasicNode previousNode;
 	BasicNodeList allBasicNodes;
+	HeaderNodeList allHeaderNodes;
 
-	BasicNode(BasicNodeList nodeList){
-		this.nodeName = "";
+	BasicNode(BasicNodeList allBasicNodes, HeaderNodeList allHeaderNodes){
+		this.nodeName = 0;
 		this.dataType = "";
 		this.intData = 0;
 		this.stringData = "";
@@ -20,20 +21,21 @@ class BasicNode{
 		this.resultData = null;
 		this.nextNode = null;
 		this.previousNode = null;
-		this.allBasicNodes = nodeList;
-		nodeList.addNode(this);
+		this.allBasicNodes = allBasicNodes;
+		this.allHeaderNodes = allHeaderNodes;
+		allBasicNodes.addNode(this);
 	}//end constructor
 
-	public void setName(String nodeName){
+	public void setName(int nodeName){
 		this.nodeName = nodeName;
 	}//end setter def
 
-	public String getName(){
+	public int getName(){
 		return this.nodeName;
 	}//end getter
 
 	public String getNodeInfo(){
-		String tempNodeInfo = "Node Name: " + this.getName() + "\nNext Node: " + this.nextNode.getName() + "\nPrevious Node: " + this.previousNode.getName();
+		String tempNodeInfo = "Node Name: " + this.getName() + "\nNext Node: " + String.valueOf(this.nextNode.getName()) + "\nPrevious Node: " + this.previousNode.getName();
 		return tempNodeInfo;
 	}//end getter def
 
@@ -70,16 +72,31 @@ class BasicNode{
 		} else if (this.dataType.equalsIgnoreCase("Date")){
 			dateData.setDate(data);
 		} else if (this.dataType.equalsIgnoreCase("ResultingInt")){
-			String[] dependencies = data.split(", ");
-			for (String dependency: dependencies){
-				for (BasicNode node: allBasicNodes.getNodeList()){
-					if (dependency.equalsIgnoreCase(node.getName())){
-						dependenciesList.add(node);
-					}//end if
+			try{
+				String[] stringDependencies = data.split(", ");
+				int[] dependencies = new int[stringDependencies.length];
+				int i = 0;
+				for (String dependency: stringDependencies){
+					dependencies[i] = Integer.parseInt(dependency);
+					i++;
 				}//end for loop
-			}//end for loop
-			resultData.setDependencies(dependenciesList);
-			resultData.setResultingInt();
+				i = 0;
+				for (i = 0; i <= dependencies.length; i += 2){
+					for (HeaderNode headerNode: allHeaderNodes.getNodeList()){
+						if (dependencies[i] == headerNode.getName()){
+							for (BasicNode basicNode: allBasicNodes.getNodeList()){
+								if (dependencies[i+1] == basicNode.getName()){
+									dependenciesList.add(basicNode);
+								}//end if
+							}//end for	
+						}//end if
+					}//end for loop
+				}//end for loop
+				resultData.setDependencies(dependenciesList);
+				resultData.setResultingInt();
+			} catch (Exception e){
+				System.out.println("Error parsing dependencies to ints");
+			}//end catch
 		} else {
 			System.out.println("Error");
 		}//end if def

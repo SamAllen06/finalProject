@@ -7,6 +7,31 @@ public class HeaderLinkedList{
 		this.allHeaderNodes = nodeList;
 	}//end constructor
 
+	public void setNames(){
+		this.headerHead.setName(1);
+		HeaderNode tempNode = this.headerHead();
+		int i;
+		for (i = 2; i <= getListLength(); i++){
+			tempNode.getNext().setName(i);
+			tempNode = tempNode.getNext();
+		}//end for loop
+	}//end setNames
+
+	public int getListLength(){
+		int i = 1;
+		HeaderNode tempNode = this.headerHead();
+		boolean keepGoing = true;
+		while (keepGoing){
+			tempNode = tempNode.getNext();
+			if (tempNode == null){
+				keepGoing = false;
+			} else {
+				i++;
+			}//end if
+		}//end while loop
+		return i;
+	}//end getListLength
+
 	public void setHeaderHead(HeaderNode node){
 		this.headerHead = node;
 	}//end setter def
