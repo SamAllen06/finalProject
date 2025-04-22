@@ -3,7 +3,7 @@ import java.util.*;
 public class BasicNodeList{
 	ArrayList<BasicNode> basicNodes;
 
-	public void BasicNodeList(){
+	public BasicNodeList(){
 		basicNodes = new ArrayList();
 	}//end constructor
 

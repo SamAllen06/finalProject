@@ -1,7 +1,7 @@
 public class Date{
 	String date;
 
-	Date(){
+	public Date(){
 		this.date = "";
 	}//end Constructor def
 	

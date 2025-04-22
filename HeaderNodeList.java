@@ -3,7 +3,7 @@ import java.util.*;
 public class HeaderNodeList{
 	ArrayList<HeaderNode> headerNodes;
 
-	public void HeaderNodeList(){
+	public HeaderNodeList(){
 		headerNodes = new ArrayList();
 	}//end constructor
 

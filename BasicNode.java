@@ -12,13 +12,13 @@ class BasicNode{
 	BasicNodeList allBasicNodes;
 	HeaderNodeList allHeaderNodes;
 
-	BasicNode(BasicNodeList allBasicNodes, HeaderNodeList allHeaderNodes){
+	public BasicNode(BasicNodeList allBasicNodes, HeaderNodeList allHeaderNodes){
 		this.nodeName = 0;
 		this.dataType = "";
 		this.intData = 0;
 		this.stringData = "";
-		this.dateData = null;
-		this.resultData = null;
+		this.dateData = new Date();
+		this.resultData = new ResultingInt();
 		this.nextNode = null;
 		this.previousNode = null;
 		this.allBasicNodes = allBasicNodes;
@@ -26,8 +26,8 @@ class BasicNode{
 		allBasicNodes.addNode(this);
 	}//end constructor
 
-	public void setName(int nodeName){
-		this.nodeName = nodeName;
+	public void setName(int name){
+		this.nodeName = name;
 	}//end setter def
 
 	public int getName(){

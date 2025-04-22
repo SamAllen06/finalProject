@@ -1,10 +1,12 @@
 public class BasicLinkedList{
 	BasicNode basicHead;
 	BasicNodeList allBasicNodes;
+	HeaderNodeList allHeaderNodes;
 
-	public void BasicLinkedList(BasicNodeList nodeList){
-		this.basicHead = null;
-		this.allBasicNodes = nodeList;
+	public BasicLinkedList(BasicNodeList allBasicNodes, HeaderNodeList allHeaderNodes){
+		this.basicHead = new BasicNode(allBasicNodes, allHeaderNodes);
+		this.allBasicNodes = allBasicNodes;
+		this.allHeaderNodes = allHeaderNodes;
 	}//end constructor
 
 	public void setNames(int startingName){
@@ -24,11 +26,11 @@ public class BasicLinkedList{
 	public BasicNode getBasicHead(){
 		return this.basicHead;
 	}//end getBasicHead def
-
+/*
 	public void createBasicList(){
-		this.basicHead = new BasicNode(this.allBasicNodes);
+		this.basicHead = new BasicNode(this.allBasicNodes, this.allHeaderNodes);
 	}//end createBasicList def
-
+*/
 	public void deleteBasicList(BasicNode node){
                 while (node != null){
                         BasicNode tempNode = node.getNext();

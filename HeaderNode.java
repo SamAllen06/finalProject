@@ -7,16 +7,15 @@ class HeaderNode{
 	BasicLinkedList data;
 	HeaderNodeList allHeaderNodes;
 
-	HeaderNode(HeaderNodeList nodeList){
+	public HeaderNode(BasicNodeList allBasicNodes, HeaderNodeList allHeaderNodes){
 		this.nodeName = 0;
 		this.nodeData = "";
 		this.nextHeader = null;
 		this.previousHeader = null;
-		this.results.createBasicList();
-		this.data.createBasicList();
-		this.nodeName = "";
-		this.allHeaderNodes = nodeList;
-		nodeList.addNode(this);
+		this.results = new BasicLinkedList(allBasicNodes, allHeaderNodes);
+		this.data = new BasicLinkedList(allBasicNodes, allHeaderNodes);
+		this.allHeaderNodes = allHeaderNodes;
+		allHeaderNodes.addNode(this);
 	}//end constructor
 
 	public void setName(int nodeName){

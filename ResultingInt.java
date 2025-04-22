@@ -5,7 +5,7 @@ public class ResultingInt{
 	ArrayList<BasicNode> dependencies = new ArrayList();
 	int resultingInt;
 
-	ResultingInt(){
+	public ResultingInt(){
 		this.operationType = "";
 		this.resultingInt = 0;	
 	}//end constructor def
@@ -35,17 +35,26 @@ public class ResultingInt{
 		int tempSum = 0;
 		int tempInt = 0;
 		if (this.operationType.equalsIgnoreCase("multiplication")){
-			for (BasicNode dependency: dependencies){
-				tempInt = Integer.parseInt(dependency.getNodeData());
-				tempProduct = tempProduct * tempInt;
-			}//end for loop
-			this.resultingInt = tempProduct;
+			try{
+			
+				for (BasicNode dependency: dependencies){
+					tempInt = Integer.parseInt(dependency.getNodeData());
+					tempProduct = tempProduct * tempInt;
+				}//end for loop
+				this.resultingInt = tempProduct;
+			} catch(Exception e){
+				System.out.println(e);
+			}//end try
 		} else if (this.operationType.equalsIgnoreCase("addition")){
-			for (BasicNode dependency: dependencies){
-				tempInt = Integer.parseInt(dependency.getNodeData());
-				tempSum = tempSum + tempInt;
-			}//end for looop
-			this.resultingInt = tempSum;
+			try{
+				for (BasicNode dependency: dependencies){
+					tempInt = Integer.parseInt(dependency.getNodeData());
+					tempSum = tempSum + tempInt;
+				}//end for looop
+				this.resultingInt = tempSum;
+			}catch(Exception e){
+				System.out.println(e);
+			}//end try
 		} else{
 			this.resultingInt = 0;
 		}//end if 
