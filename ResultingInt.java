@@ -34,12 +34,17 @@ public class ResultingInt{
 		int tempProduct = 1;
 		int tempSum = 0;
 		int tempInt = 0;
+		int i = 0;
 		if (this.operationType.equalsIgnoreCase("multiplication")){
 			try{
-			
 				for (BasicNode dependency: dependencies){
 					tempInt = Integer.parseInt(dependency.getNodeData());
-					tempProduct = tempProduct * tempInt;
+					if (tempInt != 0){
+						if (i<2){
+							tempProduct = tempProduct * tempInt;
+						}//end if
+						i +=1;
+					}//end if
 				}//end for loop
 				this.resultingInt = tempProduct;
 			} catch(Exception e){
@@ -51,7 +56,7 @@ public class ResultingInt{
 					tempInt = Integer.parseInt(dependency.getNodeData());
 					tempSum = tempSum + tempInt;
 				}//end for looop
-				this.resultingInt = tempSum;
+				this.resultingInt = tempSum/2;
 			}catch(Exception e){
 				System.out.println(e);
 			}//end try

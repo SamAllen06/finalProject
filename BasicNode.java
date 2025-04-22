@@ -79,21 +79,43 @@ class BasicNode{
 				for (String dependency: stringDependencies){
 					dependencies[i] = Integer.parseInt(dependency);
 					i++;
+					System.out.println("parsed an int");
 				}//end for loop
 				i = 0;
-				for (i = 0; i <= dependencies.length; i += 2){
+				for (i = 0; i < dependencies.length; i += 2){
+					System.out.println("problem1");
 					for (HeaderNode headerNode: allHeaderNodes.getNodeList()){
-						if (dependencies[i] == headerNode.getName()){
+						System.out.println("problem2");
+						if (dependencies[i+1] == headerNode.getName()){
+							System.out.println("problem3");
 							for (BasicNode basicNode: allBasicNodes.getNodeList()){
-								if (dependencies[i+1] == basicNode.getName()){
+								System.out.println("problem4");
+								if (dependencies[i] == basicNode.getName()){
 									dependenciesList.add(basicNode);
+									System.out.println("added a node to dependencieslist");
 								}//end if
+								System.out.println("problem5");
 							}//end for	
+							System.out.println("problem6");
 						}//end if
+						System.out.println("problem7");
 					}//end for loop
+					System.out.println("problem8");
 				}//end for loop
+				System.out.println("problem after loops and ifs");
 				resultData.setDependencies(dependenciesList);
+				Scanner input = new Scanner(System.in);
+				System.out.println("Do you want to (1) add or (2) multiply the dependencies?");
+				String operationType = input.nextLine();
+				if (operationType.equals("1")){
+					resultData.setOperationType("addition");
+				} else if (operationType.equals("2")){
+					resultData.setOperationType("multiplication");
+				} else{
+					System.out.println("invalid input");
+				}//end if
 				resultData.setResultingInt();
+				System.out.println("setResultingInt worked");
 			} catch (Exception e){
 				System.out.println("Error parsing dependencies to ints");
 			}//end catch
