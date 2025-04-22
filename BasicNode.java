@@ -98,7 +98,7 @@ class BasicNode{
 				System.out.println("Error parsing dependencies to ints");
 			}//end catch
 		} else {
-			System.out.println("Error");
+			System.out.println("Datatype not set");
 		}//end if def
 	}//end setter def
 
@@ -112,7 +112,7 @@ class BasicNode{
 		} else if (this.dataType.equalsIgnoreCase("ResultingInt")){
 			return String.valueOf(this.resultData.getResultingInt());
 		} else{
-			String error = "Error";
+			String error = "Empty";
 			return error;
 		}//end if
 	}//end getter def

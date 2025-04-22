@@ -187,17 +187,31 @@ class Budgeter{
 				Scanner input = new Scanner(System.in);
 				String lineNumString = input.nextLine();
 				int lineNum = Integer.parseInt(lineNumString);
+				HeaderNode tempNode = this.headerList.getHeaderHead();
+				System.out.print("Row 1: ");
+				while (tempNode != null){
+					System.out.print("Column " + String.valueOf(tempNode.getName())+ ", ");
+					tempNode = tempNode.getNext();
+				}//end while loop
+				System.out.println();
 				printLines(lineNum);
 			} else if (response.equals("5")){
 				HeaderNode newNode = new HeaderNode(this.basicNodeList, this.headerNodeList);
 				this.headerList.addHeaderNode(newNode);
 			} else if (response.equals("6")){
-				BasicNode tempNode = this.headerList.getHeaderHead().getData().getBasicHead();
+				BasicNode tempBasicNode = this.headerList.getHeaderHead().getData().getBasicHead();
 				int i = 2;
+				HeaderNode tempNode = this.headerList.getHeaderHead();
+				System.out.print("Row 1: ");
 				while (tempNode != null){
+					System.out.print("Column " + String.valueOf(tempNode.getName())+ ", ");
+					tempNode = tempNode.getNext();
+				}//end while loop
+				System.out.println();
+				while (tempBasicNode != null){
 					printLines(i);
 					i++;
-					tempNode = tempNode.getNext();
+					tempBasicNode = tempBasicNode.getNext();
 				}//end while loop			
 			} else {
 				System.out.println("Invalid input");
@@ -208,9 +222,11 @@ class Budgeter{
 	}//end recordStart def
 
 	public void printLines(int lineNum){
-		int j = 0;
+		//int j = 0;
 		HeaderNode tempNode = this.headerList.getHeaderHead();
-		while (tempNode != null){			int w = 0;
+		System.out.print("Row "+ String.valueOf(lineNum)+": ");
+		while (tempNode != null){			
+			//int w = 2;
 			BasicNode tempBasicNode = tempNode.getData().getBasicHead();
 			while (tempBasicNode != null){
 				//for (w = 0; j < tempNode.getData().getBasicNodeListLength(); w++){

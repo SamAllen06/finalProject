@@ -1,8 +1,10 @@
 public class HeaderLinkedList{
 	HeaderNode headerHead;
 	HeaderNodeList allHeaderNodes;
+	BasicNodeList allBasicNodes;
 
 	public HeaderLinkedList(BasicNodeList allBasicNodes, HeaderNodeList allHeaderNodes){
+		this.allBasicNodes = allBasicNodes;
 		this.allHeaderNodes = allHeaderNodes;
 		this.headerHead = new HeaderNode(allBasicNodes, allHeaderNodes);
 	}//end constructor
@@ -39,6 +41,11 @@ public class HeaderLinkedList{
 		}//end whil loop
 		tempNode.setNext(node);
 		node.setPrevious(tempNode);
+		int i = 0;
+		for (i = 0; i < this.headerHead.getData().getBasicNodeListLength(); i++){
+			BasicNode newNode = new BasicNode(this.allBasicNodes, this.allHeaderNodes);
+			node.getData().addBasicNode(newNode);
+		}//end for loop
 	}//end addBasicNode def
 
 	public void setHeaderHead(HeaderNode node){
