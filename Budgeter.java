@@ -85,7 +85,7 @@ class Budgeter{
 	public String budgetingMenu(){
 		String response = "";
 		Scanner input = new Scanner(System.in);
-		System.out.print("0: Exit \n1: Insert a new row \n2: Append a new row \n3: Edit past row \n4: Print a row \n5: Append a new column \n6: Print all rows \nEnter your choice: ");
+		System.out.print("0: Exit \n" /*1: Insert a new row \n*/+ "1: Append a new row \n2: Edit past row \n3: Print a row \n4: Append a new column \n5: Print all rows \nEnter your choice: ");
 		response = input.nextLine();
 		return response;
 	}//end budgetingMenu def
@@ -99,7 +99,7 @@ class Budgeter{
 			if (response.equals("0")){
 				keepGoing = false;
 				System.out.println("Exiting Record");
-			} else if (response.equals("1")){
+/*			} else if (response.equals("1")){
 				Scanner input = new Scanner(System.in);
 				System.out.println("Which row would you like to insert at? (This will move that row and all rows below it down one. You cannot insert at row 1) ");
 				String rowNumberString = input.nextLine();
@@ -126,12 +126,12 @@ class Budgeter{
 				} catch (NumberFormatException e) {
 					System.out.println("Not a valid integer");
 				}//end try 
-			} else if (response.equals("2")){
+*/			} else if (response.equals("1")){
 				for (HeaderNode node: this.headerNodeList.getNodeList()){
 					BasicNode newNode = new BasicNode(this.basicNodeList, this.headerNodeList);
 					node.data.addBasicNode(newNode);
 				}//end for loop
-			} else if (response.equals("3")){
+			} else if (response.equals("2")){
 				int columnNum = 0;
 				Scanner input = new Scanner(System.in);
 				System.out.println("What row would you like to edit?");
@@ -151,7 +151,7 @@ class Budgeter{
 						//	System.out.println(String.valueOf(tempBasicNode.getName()) + ", " + String.valueOf(rowNumber));
 							if (tempBasicNode.getName() == rowNumber){
 						//		System.out.println("tempBasicNode.getName() working");
-								System.out.print("Do you want row " + String.valueOf(rowNumber) + ", column " + String.valueOf(columnNum) + " to be (1) an integer, (2) a string, (3) a date, or (4) an integer dependent on other data? If you don't want it to change, just press enter");
+								System.out.print("Do you want row " + String.valueOf(rowNumber) + ", column " + String.valueOf(columnNum) + " to be (1) an integer, (2) a string, (3) a date, or (4) an integer dependent on other data? If you don't want it to change, just press enter: ");
 								String dataType = input.nextLine();
 								if (dataType.equals("1")){
 									tempBasicNode.setDataType("int");
@@ -166,7 +166,7 @@ class Budgeter{
 								} else {
 									System.out.println("Invalid input");
 								}// end if
-								System.out.print("What is the data that you want " +String.valueOf(rowNumber) + ", column " +String.valueOf(columnNum) + " to be ? (In the case of option 4, put in the row and column numbers of all the cells that you want this cell to use in its calculations in this format: 'row1, column1, row2, column2, etc'" );
+								System.out.print("What is the data that you want " +String.valueOf(rowNumber) + ", column " +String.valueOf(columnNum) + " to be ? (In the case of option 4, put in the row and column numbers of all the cells that you want this cell to use in its calculations in this format: 'row1, column1, row2, column2, etc': ");
 								String data = input.nextLine();
 								try {
 									tempBasicNode.setNodeData(data);
@@ -182,7 +182,7 @@ class Budgeter{
 				} catch (NumberFormatException e){
 					System.out.println("Invalid input");
 				}//end try
-			} else if (response.equals("4")){
+			} else if (response.equals("3")){
 				System.out.println("What line would you like to print? ");
 				Scanner input = new Scanner(System.in);
 				String lineNumString = input.nextLine();
@@ -195,10 +195,10 @@ class Budgeter{
 				}//end while loop
 				System.out.println();
 				printLines(lineNum);
-			} else if (response.equals("5")){
+			} else if (response.equals("4")){
 				HeaderNode newNode = new HeaderNode(this.basicNodeList, this.headerNodeList);
 				this.headerList.addHeaderNode(newNode);
-			} else if (response.equals("6")){
+			} else if (response.equals("5")){
 				BasicNode tempBasicNode = this.headerList.getHeaderHead().getData().getBasicHead();
 				int i = 2;
 				HeaderNode tempNode = this.headerList.getHeaderHead();
